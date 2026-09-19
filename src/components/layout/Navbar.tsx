@@ -1,4 +1,3 @@
-
 import { CalendarDays, Menu, Phone, X } from "lucide-react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
@@ -76,9 +75,7 @@ function Navbar() {
     <>
       <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4 lg:px-8">
         <div className="mx-auto max-w-7xl">
-          <div
-            className="navbar min-h-16 rounded-4xl border border-white/50 bg-white/50 px-4 backdrop-blur-lg backdrop-saturate-150 sm:px-6"
-          >
+          <div className="navbar min-h-16 rounded-4xl border border-white/50 bg-white/50 px-4 backdrop-blur-lg backdrop-saturate-150 sm:px-6">
             <div className="navbar-start">
               <Link
                 to="/"
@@ -120,8 +117,6 @@ function Navbar() {
             </div>
 
             <div className="navbar-end hidden gap-2 lg:flex">
-              
-
               <Link
                 to="/appointment"
                 className="btn rounded-full border-none bg-clinic-navy px-5 text-clinic-cream shadow-none transition-all duration-300 hover:bg-clinic-marine hover:shadow-lg"
@@ -185,8 +180,7 @@ function Navbar() {
                     onClick={(event) =>
                       handleSectionNavigation(event, item.href)
                     }
-                    className="
-                      rounded-xl px-4 py-3 text-base font-medium text-clinic-cream/70 transition hover:bg-white/10 hover:text-clinic-cream"
+                    className="rounded-xl px-4 py-3 text-base font-medium text-clinic-cream/70 transition hover:bg-white/10 hover:text-clinic-cream"
                   >
                     {item.label}
                   </a>
