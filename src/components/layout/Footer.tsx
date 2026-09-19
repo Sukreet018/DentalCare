@@ -20,12 +20,12 @@ function Footer() {
               Modern dental care delivered with clarity, precision, and genuine
               attention to every patient.
             </p>
-            <a 
-              href="tel:+919876543210" 
+            <a
+              href="tel:+919876543210"
               className="mt-6 inline-flex items-center gap-3 text-3xl font-semibold transition hover:text-white"
-            > 
-              <Phone size={45} /> 
-              +91 98765 43210 
+            >
+              <Phone size={45} />
+              +91 98765 43210
             </a>
           </div>
           <div>
@@ -78,18 +78,18 @@ function Footer() {
                 <a href="https://www.instagram.com/tarvanceweb?stkn=cGdzZ2ttZDJoN3hk&utm_source=qr" target="_blank" rel="noopener noreferrer">
                   <FaInstagram size={35} color="white" />
                 </a>
-                
+
                 <a href="https://www.facebook.com/people/TarVance/61594404690999" target="_blank" rel="noopener noreferrer">
                   <FaFacebook size={35} color="white" />
                 </a>
-                
+
                 <a href="https://api.whatsapp.com/send/?phone=8282017341&text&type=phone_number&app_absent=0" target="_blank" rel="noopener noreferrer">
                   <FaWhatsapp size={35} color="white" />
                 </a>
                 <a href="https://www.linkedin.com/company/tarvance/home/">
                   <FaLinkedin size={35} color="white" />
                 </a>
-                
+
               </div>
             </div>
           </div>
@@ -108,7 +108,7 @@ function Footer() {
               >
                 Book Appointment
                 <ArrowUpRight size={16} />
-        
+
               </Link>
             </div>
           </div>
