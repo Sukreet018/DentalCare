@@ -40,7 +40,7 @@ function About() {
                 src="https://images.unsplash.com/photo-1588776814546-daab30f310ce?auto=format&fit=crop&w=1100&q=85"
                 alt="Dentist providing patient care"
                 loading="lazy"
-                className="h-[39rem] w-full rounded-[1.6rem] object-cover sm:h-[44.2rem]"
+                className="h-156 w-full rounded-[1.6rem] object-cover sm:h-[44.2rem]"
                 
               />
             </div>

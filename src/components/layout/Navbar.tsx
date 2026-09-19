@@ -120,13 +120,7 @@ function Navbar() {
             </div>
 
             <div className="navbar-end hidden gap-2 lg:flex">
-              {/*<a
-                className="btn btn-ghost px-5 py-2.5 rounded-full border-none text-clinic-navy hover:bg-clinic-beige/70"
-                aria-label="Call Dentiva"
-              >
-                <Phone size={16} />
-                <span>+91 1234567890</span>
-              </a>*/}
+              
 
               <Link
                 to="/appointment"
