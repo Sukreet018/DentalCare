@@ -18,14 +18,14 @@ function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const scrollToSection = (sectionId: string) => {
-    const section = document.getElementById(sectionId);
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
 
-    if (!section) {
+    if (!element) {
       return;
     }
 
-    section.scrollIntoView({
+    element.scrollIntoView({
       behavior: "smooth",
       block: "start",
     });
@@ -73,153 +73,167 @@ function Navbar() {
   }, [location.pathname, location.state, navigate]);
 
   return (
-    <header className="fixed inset-x-0 top-0 z-50">
-      <nav className="mx-auto mt-4 flex max-w-7xl items-center justify-between rounded-2xl border border-white/10 bg-clinic-navy/80 px-5 py-3 shadow-lg backdrop-blur-xl md:px-7">
-        {/* Logo */}
-        <Link
-          to="/"
-          onClick={() => setMobileOpen(false)}
-          className="flex items-center gap-3"
-        >
-          <div className="flex h-10 w-10 items-center justify-center rounded-full border border-clinic-accent/40 bg-clinic-accent/10 text-clinic-accent">
-            <span className="font-display text-lg font-bold">D</span>
-          </div>
-
-          <div className="leading-none">
-            <span className="block font-display text-lg font-bold tracking-wide text-clinic-cream">
-              Dentiva
-            </span>
-            <span className="text-[10px] uppercase tracking-[0.25em] text-clinic-cream/50">
-              Dental Care
-            </span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <div className="hidden items-center gap-8 lg:flex">
-          {navigation.map((item) => {
-            if (item.href.startsWith("#")) {
-              return (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  onClick={(event) =>
-                    handleSectionNavigation(event, item.href)
-                  }
-                  className="text-sm font-medium text-clinic-cream/70 transition-colors duration-300 hover:text-clinic-accent"
-                >
-                  {item.label}
-                </a>
-              );
-            }
-
-            return (
+    <>
+      <header className="fixed inset-x-0 top-0 z-50 px-3 pt-3 sm:px-5 sm:pt-4 lg:px-8">
+        <div className="mx-auto max-w-7xl">
+          <div
+            className="navbar min-h-16 rounded-4xl border border-white/50 bg-white/50 px-4 backdrop-blur-lg backdrop-saturate-150 sm:px-6"
+          >
+            <div className="navbar-start">
               <Link
-                key={item.label}
-                to={item.href}
-                className={`text-sm font-medium transition-colors duration-300 ${
-                  location.pathname === item.href
-                    ? "text-clinic-accent"
-                    : "text-clinic-cream/70 hover:text-clinic-accent"
-                }`}
+                to="/"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2"
               >
-                {item.label}
+                <span className="font-display text-lg font-extrabold tracking-tight text-clinic-navy sm:text-xl">
+                  Dental<a className="text-amber-500">Care</a>
+                </span>
               </Link>
-            );
-          })}
+            </div>
+
+            <div className="navbar-center hidden lg:flex">
+              <nav className="flex items-center gap-1.5">
+                {navigation.map((item) =>
+                  item.href.startsWith("#") ? (
+                    <a
+                      key={item.href}
+                      href={item.href}
+                      onClick={(event) =>
+                        handleSectionNavigation(event, item.href)
+                      }
+                      className="rounded-full px-4 py-2 text-sm font-bold text-clinic-text/95 transition-all duration-300 hover:bg-clinic-navy hover:text-clinic-cream"
+                    >
+                      {item.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={item.href}
+                      to={item.href}
+                      onClick={() => setMobileOpen(false)}
+                      className="rounded-full px-4 py-2 text-sm font-bold text-clinic-text/95 transition-all duration-300 hover:bg-clinic-navy hover:text-clinic-cream"
+                    >
+                      {item.label}
+                    </Link>
+                  ),
+                )}
+              </nav>
+            </div>
+
+            <div className="navbar-end hidden gap-2 lg:flex">
+              {/*<a
+                className="btn btn-ghost px-5 py-2.5 rounded-full border-none text-clinic-navy hover:bg-clinic-beige/70"
+                aria-label="Call Dentiva"
+              >
+                <Phone size={16} />
+                <span>+91 1234567890</span>
+              </a>*/}
+
+              <Link
+                to="/appointment"
+                className="btn rounded-full border-none bg-clinic-navy px-5 text-clinic-cream shadow-none transition-all duration-300 hover:bg-clinic-marine hover:shadow-lg"
+              >
+                <CalendarDays size={16} />
+                Book Appointment
+              </Link>
+            </div>
+
+            <div className="navbar-end lg:hidden">
+              <button
+                type="button"
+                onClick={() => setMobileOpen(true)}
+                className="btn btn-circle btn-sm border-none bg-clinic-navy text-clinic-cream shadow-none"
+                aria-label="Open navigation"
+              >
+                <Menu size={19} />
+              </button>
+            </div>
+          </div>
         </div>
+      </header>
 
-        {/* Desktop Actions */}
-        <div className="hidden items-center gap-3 lg:flex">
-          <a
-            href="tel:+919876543210"
-            className="flex items-center gap-2 rounded-full border border-white/10 px-4 py-2 text-sm font-medium text-clinic-cream/80 transition-all duration-300 hover:border-clinic-accent/40 hover:text-clinic-accent"
-          >
-            <Phone size={15} />
-            <span>Call Us</span>
-          </a>
-
-          <Link
-            to="/appointment"
-            className="flex items-center gap-2 rounded-full bg-clinic-accent px-5 py-2.5 text-sm font-semibold text-clinic-navy transition-all duration-300 hover:scale-[1.02] hover:bg-clinic-cream"
-          >
-            <CalendarDays size={16} />
-            <span>Book Appointment</span>
-          </Link>
-        </div>
-
-        {/* Mobile Menu Button */}
-        <button
-          type="button"
-          aria-label={mobileOpen ? "Close menu" : "Open menu"}
-          onClick={() => setMobileOpen((previous) => !previous)}
-          className="flex h-10 w-10 items-center justify-center rounded-full border border-white/10 text-clinic-cream lg:hidden"
-        >
-          {mobileOpen ? <X size={21} /> : <Menu size={21} />}
-        </button>
-      </nav>
-
-      {/* Mobile Navigation */}
       {mobileOpen && (
-        <div className="mx-4 mt-2 overflow-hidden rounded-2xl border border-white/10 bg-clinic-navy/95 p-4 shadow-xl backdrop-blur-xl lg:hidden">
-          <div className="flex flex-col gap-1">
-            {navigation.map((item) => {
-              if (item.href.startsWith("#")) {
-                return (
+        <div className="fixed inset-0 z-60 lg:hidden">
+          <button
+            type="button"
+            aria-label="Close navigation"
+            onClick={() => setMobileOpen(false)}
+            className="absolute inset-0 bg-clinic-navy/30 backdrop-blur-sm"
+          />
+
+          <aside className="absolute right-0 top-0 h-full w-[min(88vw,24rem)] bg-clinic-navy p-6 text-clinic-cream shadow-2xl motion-preset-slide-left">
+            <div className="flex items-center justify-between">
+              <Link
+                to="/"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center gap-2"
+              >
+                <span className="font-display text-xl font-extrabold">
+                  Dental<a className="text-amber-500">Care</a>
+                </span>
+              </Link>
+
+              <button
+                type="button"
+                onClick={() => setMobileOpen(false)}
+                className="btn btn-circle btn-sm border border-white/15 bg-transparent text-clinic-cream shadow-none"
+                aria-label="Close navigation"
+              >
+                <X size={18} />
+              </button>
+            </div>
+
+            <nav className="mt-12 flex flex-col gap-2">
+              {navigation.map((item) =>
+                item.href.startsWith("#") ? (
                   <a
-                    key={item.label}
+                    key={item.href}
                     href={item.href}
                     onClick={(event) =>
                       handleSectionNavigation(event, item.href)
                     }
-                    className="rounded-xl px-4 py-3 text-sm font-medium text-clinic-cream/75 transition-colors duration-300 hover:bg-white/5 hover:text-clinic-accent"
+                    className="
+                      rounded-xl px-4 py-3 text-base font-medium text-clinic-cream/70 transition hover:bg-white/10 hover:text-clinic-cream"
                   >
                     {item.label}
                   </a>
-                );
-              }
+                ) : (
+                  <Link
+                    key={item.href}
+                    to={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className="rounded-xl px-4 py-3 text-base font-medium text-clinic-cream/70 transition hover:bg-white/10 hover:text-clinic-cream"
+                  >
+                    {item.label}
+                  </Link>
+                ),
+              )}
+            </nav>
 
-              return (
+            <div className="mt-10 border-t border-white/10 pt-8">
+              <a
+                href="tel:+919876543210"
+                className="flex items-center gap-3 text-sm text-clinic-cream/75"
+              >
+                <Phone size={17} />
+                +91 98765 43210
+              </a>
+
+              <div>
                 <Link
-                  key={item.label}
-                  to={item.href}
+                  to="/appointment"
                   onClick={() => setMobileOpen(false)}
-                  className={`rounded-xl px-4 py-3 text-sm font-medium transition-colors duration-300 ${
-                    location.pathname === item.href
-                      ? "bg-white/5 text-clinic-accent"
-                      : "text-clinic-cream/75 hover:bg-white/5 hover:text-clinic-accent"
-                  }`}
+                  className="btn mt-6 w-full rounded-xl border-none bg-clinic-cream text-clinic-navy shadow-none hover:bg-clinic-beige"
                 >
-                  {item.label}
+                  <CalendarDays size={17} />
+                  Book Appointment
                 </Link>
-              );
-            })}
-
-            <div className="my-2 h-px bg-white/10" />
-
-            <a
-              href="tel:+919876543210"
-              onClick={() => setMobileOpen(false)}
-              className="flex items-center gap-2 rounded-xl px-4 py-3 text-sm font-medium text-clinic-cream/75 transition-colors duration-300 hover:bg-white/5 hover:text-clinic-accent"
-            >
-              <Phone size={16} />
-              <span>Call Us</span>
-            </a>
-
-            <Link
-              to="/appointment"
-              onClick={() => setMobileOpen(false)}
-              className="mt-1 flex items-center justify-center gap-2 rounded-xl bg-clinic-accent px-4 py-3 text-sm font-semibold text-clinic-navy transition-all duration-300 hover:bg-clinic-cream"
-            >
-              <CalendarDays size={17} />
-              <span>Book Appointment</span>
-            </Link>
-          </div>
+              </div>
+            </div>
+          </aside>
         </div>
       )}
-    </header>
+    </>
   );
 }
 
 export default Navbar;
-
